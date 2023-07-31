@@ -5,128 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>인스타그램 감정 분석</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f0f0;
-        }
-
-        header {
-            background: linear-gradient(to right, #fad0c4, #ffd1ff);
-            color: #fff;
-            text-align: center;
-            padding: 1rem 0;
-        }
-
-        h1 {
-            font-size: 3rem; /* 제목의 폰트 크기를 증가하여 더 뚜렷하게 표시 */
-            margin: 0; /* 제목의 기본 여백을 제거 */
-            letter-spacing: 2px; /* 글자 간격을 더 넓힘으로써 가독성 향상 */
-        }
-
-        main {
-            display: grid;
-            grid-template-columns: 1fr 3fr 1fr;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .left-banner,
-        .right-banner {
-            background-color: #f6c2e6;
-            padding: 20px;
-            height: 50vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            grid-row: span 2;
-        }
-
-        .left-banner {
-            grid-column: 1;
-            grid-row: 2;
-        }
-
-        .right-banner {
-            grid-column: 3;
-            grid-row: 2;
-        }
-
-        .image-output {
-            text-align: center;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            padding: 10px;
-            max-width: 100%;
-            max-height: 50vh;
-            margin: 0 auto;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            grid-column: 2;
-            grid-row: span 2;
-            background: #f6c2e6;
-        }
-
-        .input-section {
-            text-align: center;
-            max-width: 100%;
-            margin: 0 auto;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            background: linear-gradient(to right, #fad0c4, #ffd1ff);
-            grid-column: 2;
-            grid-row: 1;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            outline: none;
-            font-size: 16px;
-        }
-
-        button {
-            padding: 12px 28px; /* 패딩 크기를 조금 늘려서 버튼이 더 눈에 띄도록 함 */
-            font-size: 18px; /* 버튼 텍스트의 폰트 크기를 증가시켜 더 잘 보이도록 함 */
-            background: linear-gradient(to right, #fad0c4, #ffd1ff);
-            color: #fff;
-            border: 2px solid #b555b5; /* 테두리의 두께와 색상을 변경하여 더 뚜렷하게 표시 */
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background: linear-gradient(to right, #ffd1ff, #fad0c4);
-        }
-
-        .explanation-window {
-            text-align: center;
-            padding: 20px;
-            border: 2px solid #b555b5; /* 설명 창의 테두리를 더 뚜렷하게 표시 */
-            border-radius: 10px;
-            background-color: #fff;
-            margin-top: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .answer-block {
-            margin-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -157,68 +36,44 @@
         </div>
     </main>
 
-    <script>
-        // 필요한 요소들의 참조를 가져옵니다.
-        const instagramInput = document.getElementById('instagram-address');
-        const analyzeButton = document.getElementById('analyze-button');
-        const imageOutput = document.querySelector('.image-output img');
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>About</h6>
+                    <p class="text-justify">당신의 인스타그램 느낌을 감정 분석하여 출력하는 사이트입니다.</p>
+                    <p class="text-justify">Made by [제작자 이름], [소속]</p>
+                </div>
 
-        // GPT API에서 답변을 가져오는 것을 시뮬레이션하는 함수 (실제 API 호출로 대체해야 함)
-        function getGptAnswers() {
-            // GPT API에서 답변을 가져온 것을 시뮬레이션하고 문자열 배열로 반환합니다.
-            const answers = [
-                "설명 창에 표시할 추가적인 답변입니다."
-            ];
+                <div class="col-xs-6 col-md-3">
+                    <h6>Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved
+                    </p>
+                </div>
 
-            return answers;
-        }
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-        // 설명 창을 생성하고 표시하는 함수
-        function displayExplanation(answers) {
-            const explanationWindow = document.createElement('div');
-            explanationWindow.className = 'explanation-window';
-
-            answers.forEach((answer) => {
-                const answerBlock = document.createElement('div');
-                answerBlock.className = 'answer-block';
-
-                const answerParagraph = document.createElement('p');
-                answerParagraph.textContent = answer;
-                answerBlock.appendChild(answerParagraph);
-
-                explanationWindow.appendChild(answerBlock);
-            });
-
-            // 설명 창을 이미지 출력 div 아래에 추가합니다.
-            const imageOutputDiv = document.querySelector('.image-output');
-            imageOutputDiv.appendChild(explanationWindow);
-        }
-
-        // "분석" 버튼 클릭 이벤트를 처리합니다.
-        analyzeButton.addEventListener('click', () => {
-            const instagramAddress = instagramInput.value.trim();
-
-            // 여기서 사용자의 인스타그램 주소로 이미지를 생성하거나 처리하는 로직을 구현합니다.
-            // 이 예제에서는 generateRandomImage() 함수를 사용하여 랜덤 이미지를 생성합니다.
-            const imageUrl = generateRandomImage();
-
-            // 생성된 이미지 URL로 imageOutput을 업데이트합니다.
-            imageOutput.src = imageUrl;
-            imageOutput.alt = '생성된 이미지';
-
-            // GPT API에서 답변을 가져오는 것을 시뮬레이션합니다.
-            const answersFromGpt = getGptAnswers();
-
-            // 답변을 가지고 설명 창을 표시합니다.
-            displayExplanation(answersFromGpt);
-        });
-
-        // 임의의 이미지 URL을 반환하는 함수 (실제 이미지 생성 로직으로 대체해야 함)
-        function generateRandomImage() {
-            // 임의의 이미지 URL을 반환합니다.
-            return 'https://via.placeholder.com/400';
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
