@@ -1,9 +1,8 @@
 # OpenAI 라이브러리 및 API 키를 불러옵니다.
 import openai
-import os
-import pandas as pd
-import time
-
+import requests
+import json
+import re
 # OpenAI API 키 설정
 openai.api_key = ''
 
@@ -41,21 +40,83 @@ def gpt():
     return response
 
 
+
+
+
+# translate 함수 선언
+def translateK_E(text, source='ko', target='en'):
+    CLIENT_ID, CLIENT_SECRET = 'LJUqzxG88x9BqrkdbTZt', 'ydVajsYWYe'
+    url = 'https://openapi.naver.com/v1/papago/n2mt'
+    headers = {
+        'Content-Type': 'application/json',
+        'X-Naver-Client-Id': CLIENT_ID,
+        'X-Naver-Client-Secret': CLIENT_SECRET
+    }
+    data = {'source': 'ko', 'target': 'en', 'text': text}
+    response = requests.post(url, json.dumps(data), headers=headers)
+    return response.json()['message']['result']['translatedText']
+
+def translateE_K(text, source='en', target='ko'):
+    CLIENT_ID, CLIENT_SECRET = 'LJUqzxG88x9BqrkdbTZt', 'ydVajsYWYe'
+    url = 'https://openapi.naver.com/v1/papago/n2mt'
+    headers = {
+        'Content-Type': 'application/json',
+        'X-Naver-Client-Id': CLIENT_ID,
+        'X-Naver-Client-Secret': CLIENT_SECRET
+    }
+    data = {'source': 'en', 'target': 'ko', 'text': text}
+    response = requests.post(url, json.dumps(data), headers=headers)
+    return response.json()['message']['result']['translatedText']
+
+
+v1 = "Tags :text,clothing,person,display device,indoor,wall,media,television set,led-backlit lcd display,flat panel display,furniture,lcd tv,man,television,video,multimedia,output device,computer monitor,table,screen,standing,design,"
+v2 = '''
+a person pointing at a screen, Confidence 0.78
+a screen shot of a computer, Confidence 0.76
+a person pointing at a screen, Confidence 0.77
+a close up of a table, Confidence 0.75
+a close up of a person's head, Confidence 0.81
+a person's back pocket, Confidence 0.73
+a close up of a plant, Confidence 0.76
+a person pointing at a screen, Confidence 0.80
+a person in a yellow coat, Confidence 0.67
+a screenshot of a phone, Confidence 0.77
+'''
 long_string = '''
-This is a really long string
-that spans across multiple lines.
-You can include variable values like this: {}
-'''.format(variable_value)
+현재 나는 어떤 이미지에 대해서 다음과 같은 단어를 추출했어. 
+추출한 단어는 다음과 같아
+{}
 
-name = "Bob"
-age = 25
-sentence = "My name is {} and I am {} years old.".format(name, age)
-print(sentence)
+그리고 이 이미지에 대한 간단한 설명들을 추출했고 그 확률들이야 
+{}
 
+이걸 모두 종합해서 너한테 요구하는 답변이 있어.
+1. 감정을 표현하는 단어들 10개를 나에게 보여줘 그리고 그 단어들이 이미지에서 어느정도 비율로 차지하는지 100% 기준으로 보여줘
+강조 - 해당 답변을 할 때 '명심'해야 하는건 꼭 답변 시작하는 앞에 "emotion_result: "를 쓰고 답을 하고 답 마지막에는 ".emotion" 로 마무리해서 적어줘
+2. 해당 감정단어들을 사용해서 간단한 풍경사진이나 인물사진, 동물사진 중 하나를 선택해서 글로 만들어서 표현해줘
+조건은 
+a)너가 추출해낸 단어를 활용해야 하고 
+b)dalle api에 넣을 수 있는 하나의 이미지를 생성하는 문장을 만들어줘 
+c)명심해야 할 점은 답변을 위에서 언급한 내용을 나열하지 않고 너가 추출한 단어들을 활용해서 '창의적'으로 하나의 문장을 만들어서 보여줘야돼
 
-pr = str('''
-어떤 이미지에 대해서 다음과 같은 단어 20개를 추출했어. { } 
+예를 들면 다음과 같이 보여줄 수 있어
+ex) result: 열정적으로 미래를 향해 남녀가 함께 협업하는 사업 회의 장면이며 뒷 배경은 오피스텔 건물안에 책상이 존재한다.
+꼭 앞에 "result : " 를 쓰고 답변 마지막에는 ".end_result" 를 적어줘
 
+3. 마지막으로 모든 결과물을 통합해서 이 이미지를 찍은 사용자의 mbti가 뭔지 추측하고 그 신뢰도를 보여줘
+해당 답변은
+ex)
+MBTI : <답> .MBTI
+신뢰도 : <답>
+형식으로 적어줘 그외에는 아무것도 안적어줘도 돼
+'''.format(v1,v2)
 
-''')
+result_part = re.search(r'result:(.*?)\.end_result', long_string, re.DOTALL)
+if result_part:
+    extracted_text = result_part.group(1).strip()
+    print(extracted_text)
 
+result_part_em = re.search(r'emotion_result:(.*?)\.emotion', long_string, re.DOTALL)
+if result_part_em:
+    extracted_text = result_part_em.group(1).strip()
+    print(extracted_text)

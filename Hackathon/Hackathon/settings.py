@@ -132,7 +132,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Django 프로젝트의 settings.py 파일에 있는 CSRF_TRUSTED_ORIGINS 설정을 확인하세요.
 # ngrok의 URL을 허용하는지 확인하고 필요한 경우 추가하세요. 예를 들어:
 CSRF_TRUSTED_ORIGINS = [
-    "https://9a4f-106-101-129-247.ngrok-free.app",
+    "https://46f0-49-171-116-113.ngrok-free.app",
 ]
 # settings.py에서 CSRF_COOKIE_SECURE 설정 변경:
 # 개발 단계에서는 settings.py 파일에서 CSRF_COOKIE_SECURE를 False로 변경할 수 있습니다.
@@ -143,7 +143,7 @@ CSRF_TRUSTED_ORIGINS = [
 CSRF_COOKIE_SECURE = False  # 개발 중에만 사용
 
 # CORS_ALLOWED_ORIGINS = [
-#     "https://api.clarifai.com",  # 예시: 클라리파이 서버 도메인
+#     "https://www.clarifai.com/",  # 예시: 클라리파이 서버 도메인
 #     # 추가적인 도메인이 있다면 여기에 추가
 # ]
 CORS_ALLOW_ALL_ORIGINS = True

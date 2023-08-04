@@ -1,7 +1,7 @@
 import os
 import azure.ai.vision as sdk
 
-subscription_key = "08c8b609891449f6a120a64d392da837+지워"  # <--- 여기에 구독 키 입력
+subscription_key = "08c8b609891449f6a120a64d392da837"  # <--- 여기에 구독 키 입력
 endpoint = "https://jungseoik.cognitiveservices.azure.com/"  # <--- 여기에 엔드포인트 URL 입력
 
 
@@ -12,7 +12,6 @@ vision_source = sdk.VisionSource(
     url="https://learn.microsoft.com/azure/cognitive-services/computer-vision/media/quickstarts/presentation.png")
 
 analysis_options = sdk.ImageAnalysisOptions()
-
 analysis_options.features = (
     sdk.ImageAnalysisFeature.CAPTION |
     sdk.ImageAnalysisFeature.DENSE_CAPTIONS
@@ -40,7 +39,7 @@ if result.reason == sdk.ImageAnalysisResultReason.ANALYZED:
         for caption in result.dense_captions:
             String += (str(caption.content)+", Confidence"+str(caption.confidence) + "\n")
 
-            print("   Content: '{}', Confidence {:.4f}".format(caption.content, caption.confidence))
+            # print("   Content: '{}', Confidence {:.4f}".format(caption.content, caption.confidence))
             # print("   Bounding Box: x={}, y={}, w={}, h={}".format(caption.bounding_box.x, caption.bounding_box.y,
             #                                                        caption.bounding_box.w, caption.bounding_box.h))
     print(String)

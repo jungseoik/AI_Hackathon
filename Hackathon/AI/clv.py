@@ -4,7 +4,7 @@ from clarifai_grpc.channel.clarifai_channel import ClarifaiChannel
 from clarifai_grpc.grpc.api import service_pb2_grpc
 
 # Replace with your own API key
-YOUR_CLARIFAI_API_KEY = "0f679e77367a481fbdd439313178d644+지워"
+YOUR_CLARIFAI_API_KEY = "0f679e77367a481fbdd439313178d644"
 
 stub = service_pb2_grpc.V2Stub(ClarifaiChannel.get_grpc_channel())
 
@@ -13,7 +13,7 @@ metadata = (("authorization", f"Key {YOUR_CLARIFAI_API_KEY}"),)
 
 # URL of the image you want to analyze
 SAMPLE_URL = "https://samples.clarifai.com/metro-north.jpg"
-SAMPLE_URL = "https://bdf9-106-101-129-247.ngrok-free.app/static/temp_image.png"
+
 
 request = service_pb2.PostModelOutputsRequest(
     # This is the model ID of a publicly available General model.

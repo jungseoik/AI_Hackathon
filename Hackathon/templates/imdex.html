@@ -31,38 +31,36 @@
             여기에 광고 내용을 작성하세요
         </div>
 
+
         <div class="image-output">
-            <!-- 이미지 출력 창은 JavaScript를 사용하여 동적으로 업데이트됩니다 -->
-            <img src="#" alt="생성된 이미지">
-        </div>
 
-        <div class="right-banner">
-            <!-- 오른쪽 광고 배너 내용 -->
-            여기에 광고 내용을 작성하세요
-        </div>
-
-        <div class="file-upload">
-            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger('click')">Add Image</button>
-
+       <div class="file-upload">
+<!--            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger('click')">이미지를 추가해주세요!</button>-->
+            <button class="file-upload-btn" type="button" >이미지를 추가해주세요!</button>
             <div class="image-upload-wrap">
-                <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+<!--                <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />-->
+                <br><br><br>
+                <form method="post" enctype="multipart/form-data" >
+                    {% csrf_token %}
+<!--                    <label for="text_input">Enter text:</label>-->
+<!--                    <input type="text" id="text_input" name="text">-->
+                    <input type="file" id="image_input" name="image">
+                    <input class="remove-image" type="submit" value="Submit">
+                </form>
+
                 <div class="drag-text">
-                    <h3>이미지를 끌어다 업로드하세요!</h3>
+                    <h3>'파일선택' 버튼을 눌러주세요!</h3>
                 </div>
             </div>
 
-                    <form method="post" enctype="multipart/form-data" >
-                        {% csrf_token %}
-                        <label for="text_input">Enter text:</label>
-                        <input type="text" id="text_input" name="text">
-                        <input type="file" id="image_input" name="image">
-                        <input class="remove-image" type="submit" value="Submit">
-                     </form>
-                        <h3>Entered Text:</h3>
-                        <p>{{ text }}</p>
-                        <p>{{ cap }}</p>
-                        <img class="file-upload-image" src="{% static cap %}" alt="Generated Image">
-                        <img class="file-upload-image" src="{{ dall }}" alt="Generated Image">
+
+           <h3>결과</h3>
+           <p>{{ text |linebreaksbr|safe}}</p>
+           <p>{{ cap|linebreaksbr|safe }}</p>
+           <p>{{ dall|linebreaksbr|safe }}</p>
+           <p>{{ gpt_text|linebreaksbr|safe }}</p>
+           <img class="file-upload-image" src="{% static cap %}" alt="GI">
+           <img class="file-upload-image" src="{{ dall }}" alt="GI">
 
             <div class="file-upload-content">
                 <img class="file-upload-image" src="#" alt="your image" />
@@ -71,6 +69,49 @@
                 </div>
             </div>
         </div>
+
+        </div>
+
+
+        <div class="right-banner">
+            <!-- 오른쪽 광고 배너 내용 -->
+            여기에 광고 내용을 작성하세요
+        </div>
+
+<!--        <div class="file-upload">-->
+<!--            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger('click')">Add Image</button>-->
+
+<!--            <div class="image-upload-wrap">-->
+<!--                <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />-->
+<!--                <div class="drag-text">-->
+<!--                    <h3>이미지를 끌어다 업로드하세요!</h3>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--                    <form method="post" enctype="multipart/form-data" >-->
+<!--                        {% csrf_token %}-->
+<!--                        <label for="text_input">Enter text:</label>-->
+<!--                        <input type="text" id="text_input" name="text">-->
+<!--                        <input type="file" id="image_input" name="image">-->
+<!--                        <input class="remove-image" type="submit" value="Submit">-->
+<!--                     </form>-->
+<!--                        <h3>Entered Text:</h3>-->
+<!--                        <p>{{ text |linebreaksbr|safe}}</p>-->
+<!--                        <p>{{ cap|linebreaksbr|safe }}</p>-->
+<!--                        <p>{{ dall|linebreaksbr|safe }}</p>-->
+<!--                        <p>{{ gpt_text|linebreaksbr|safe }}</p>-->
+
+
+<!--                        <img class="file-upload-image" src="{% static cap %}" alt="Generated Image">-->
+<!--                        <img class="file-upload-image" src="{{ dall }}" alt="Generated Image">-->
+
+<!--            <div class="file-upload-content">-->
+<!--                <img class="file-upload-image" src="#" alt="your image" />-->
+<!--                <div class="image-title-wrap">-->
+<!--                    <button type="button" class="remove-image">Submit</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 
     </main>
 
