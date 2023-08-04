@@ -1,5 +1,9 @@
 from django.db import models
 
+
+class InputText(models.Model):
+    text = models.TextField()
+
 class Question(models.Model):
     subject = models.CharField(max_length=200)
     content = models.TextField()

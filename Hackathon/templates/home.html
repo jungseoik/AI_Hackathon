@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Text Example</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <label for="text_input">Enter text:</label>
+        <input type="text" id="text_input" name="text">
+        <input type="submit" value="Submit">
+    </form>
+    <h3>Entered Text:</h3>
+    <p>{{ text }}</p>
+    <img src="{{ url }}" alt="Generated Image">
+</body>
+</html>

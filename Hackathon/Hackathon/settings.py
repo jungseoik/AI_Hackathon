@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -48,6 +48,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'Hackathon.urls'
@@ -117,8 +119,44 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# settings.py에서 Trusted Origins 설정 확인:
+# Django 프로젝트의 settings.py 파일에 있는 CSRF_TRUSTED_ORIGINS 설정을 확인하세요.
+# ngrok의 URL을 허용하는지 확인하고 필요한 경우 추가하세요. 예를 들어:
+CSRF_TRUSTED_ORIGINS = [
+    "https://9a4f-106-101-129-247.ngrok-free.app",
+]
+# settings.py에서 CSRF_COOKIE_SECURE 설정 변경:
+# 개발 단계에서는 settings.py 파일에서 CSRF_COOKIE_SECURE를 False로 변경할 수 있습니다.
+# 하지만 실제 운영 환경에서는
+# 이 값을 True로 설정하여 보안을 유지하는 것이 좋습니다. 개발 중에만 잠시 변경하고,
+# 운영 환경에서는 다시 True로 변경하세요:
+
+CSRF_COOKIE_SECURE = False  # 개발 중에만 사용
+
+# CORS_ALLOWED_ORIGINS = [
+#     "https://api.clarifai.com",  # 예시: 클라리파이 서버 도메인
+#     # 추가적인 도메인이 있다면 여기에 추가
+# ]
+CORS_ALLOW_ALL_ORIGINS = True
+# 또는 특정 원본 허용
+# CORS_ALLOW_ORIGINS = [
+#     "http://example.com",
+#     "https://example.com",
+# ]
+CORS_ALLOW_METHODS = [
+    'GET',  # 기본적으로 GET 요청 허용
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+]

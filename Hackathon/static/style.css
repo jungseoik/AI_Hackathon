@@ -1,0 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header[role="banner"] {
+    background: linear-gradient(to right, #fdbde8, #d3c9ff);
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+
+/* 이미지 업로드 영역을 수직으로 가운데로 정렬 */
+.file-upload {
+    margin: auto;
+    border: 2px solid #ccc;
+    padding: 20px;
+    max-width: 400px;
+}
+
+/* 이미지 출력 영역과 이미지 업로드 영역 사이의 간격을 늘림 */
+.image-output {
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    width: 512px; /* 이미지 출력 영역의 너비를 512px로 설정 */
+    height: 512px; /* 이미지 출력 영역의 높이를 512px로 설정 */
+    margin: 0 auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    grid-column: 2;
+    grid-row: 2;
+    background: #f7d2e9;
+    display: flex;
+    align-items: center; /* 이미지 수직 중앙 정렬 */
+    justify-content: center; /* 이미지 수평 중앙 정렬 */
+    overflow: hidden; /* 테두리 바깥으로 사진이 튀어나가지 않도록 설정 */
+}
+
+/* 이미지 출력의 너비를 100%로 설정하여 컨테이너에 맞게 조정 */
+.image-output img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* 이미지 출력 창 아래에 이미지 업로드 영역을 배치 */
+.file-upload {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 20px;
+}.file-upload-content {
+    display: none;
+    text-align: center;
+    align-items: center;
+}
+
+.file-upload-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.file-upload-wrap {
+    position: relative;
+}
+
+.image-upload-wrap {
+    border: 2px dashed #d3d3d3;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.drag-text {
+    text-align: center;
+}
+
+.drag-text h3 {
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 60px 0;
+}
+
+.file-upload-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.remove-image {
+    width: 200px;
+    margin: 0;
+    font-size: 12px;
+    padding: 3px 20px 2px 20px;
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.remove-image:hover {
+    background: #ffa5a5;
+}
+
+.left-banner,
+.right-banner {
+    background-color: #f7e5e5;
+    padding: 20px;
+    width: 90px; 
+    height: 728px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    grid-row: span 2;
+}
+
+.left-banner {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.right-banner {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+
+
+.input-section {
+    text-align: center;
+    max-width: 100%;
+    margin: 20px auto; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #fdbde8, #d3c9ff);
+    grid-column: 2;
+    grid-row: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px 28px;
+    font-size: 18px;
+    background: linear-gradient(to right, #fdbde8, #d3c9ff);
+    color: #fff;
+    border: 2px solid #b555b5;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(to right, #d3c9ff, #fdbde8);
+}
+
+.explanation-window {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #b555b5;
+    border-radius: 10px;
+    background-color: #fff;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.answer-block {
+    margin-bottom: 10px;
+}
+
+/* Footer Styles */
+.site-footer {
+    background-color: #666666; 
+    padding: 3vh 0 2vh;
+    font-size: 15px;
+    line-height: 24px;
+    color: #fff;
+    text-align: center;
+}
+.site-footer hr {
+    border-top-color: #bbb;
+    opacity: 0.5;
+}
+
+.site-footer hr.small {
+    margin: 2vh 0;
+}
+
+.site-footer h6 {
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-top: 2vh;
+    letter-spacing: 2px;
+}
+
+.site-footer a {
+    color: #9aad54;
+}
+
+.site-footer a:hover {
+    color: #d3c9ff;
+    text-decoration: none;
+}
+
+.footer-links {
+    padding-left: 0;
+    list-style: none;
+}
+
+.footer-links li {
+    display: block;
+}
+
+.footer-links a {
+    color: #9aad54;
+}
+
+.footer-links a:active,
+.footer-links a:focus,
+.footer-links a:hover {
+    color: #d3c9ff;
+    text-decoration: none;
+}
+
+.footer-links.inline li {
+    display: inline-block;
+}
+
+.site-footer .social-icons {
+    text-align: center;
+    margin-top: 2vh;
+}
+
+.site-footer .social-icons a {
+    width: 4vw;
+    height: 4vw;
+    line-height: 4vw;
+    margin-left: 1vw;
+    margin-right: 0;
+    border-radius: 100%;
+    background-color: #33353d;
+}
+
+.site-footer .social-icons a:hover {
+    color: #fff;
+    background-color: #29aafe;
+}
+
+@media (max-width: 767px) {
+    .site-footer {
+        padding-bottom: 0;
+    }
+    .site-footer [class^=col-] {
+        margin-bottom: 2vh;
+    }
+    .site-footer .copyright-text,
+    .site-footer .social-icons {
+        text-align: center;
+    }
+    .social-icons li.title {
+        display: block;
+        margin-right: 0;
+        font-weight: 600;
+    }
+}
+
+#navbar-primary.navbar-default {
+    background-color: #daa8da; /* Add a background color for the navbar */
+    border: none;
+    text-align: center;
+}
+
+#navbar-primary.navbar-default .navbar-nav {
+    width: 100%;
+}
+
+#navbar-primary.navbar-default .navbar-nav > li {
+    display: inline-block;
+    float: none;
+}
+
+#navbar-primary.navbar-default .navbar-nav > li > a {
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #fff; /* Change the link color to white */
+    text-decoration: none; /* Remove the underline */
+    
+
+#navbar-primary.navbar-default .navbar-nav > li > a:hover {
+    background-color: #fdbde8; /* Add a background color on hover */
+    color: #fff; /* Change the text color on hover */
+    border-radius: 5px; /* Add border radius on hover */
+}
+
+#navbar-primary.navbar-default .navbar-nav > li:not(:last-child) > a {
+    margin-right: 10px; /* Add some right margin between the links */
+}
+
