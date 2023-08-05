@@ -28,9 +28,12 @@
     <main>
         <div class="left-banner">
             <!-- 왼쪽 광고 배너 내용 -->
-            여기에 광고 내용을 작성하세요
+            <ins class="kakao_ad_area" style="display:none;"
+            data-ad-unit = "DAN-cfTSENxjro47YaVI"
+            data-ad-width = "160"
+            data-ad-height = "600"></ins>
+            <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
         </div>
-
 
         <div class="image-output">
 
@@ -47,20 +50,22 @@
                     <input type="file" id="image_input" name="image">
                     <input class="remove-image" type="submit" value="Submit">
                 </form>
+                    <div>
+                           <h3>결과</h3>
+<!--                        <img class="file-upload-image" src="{% static cap %}" alt="GI">-->
+                       <img class="file-upload-image" src="{{ dall }}" alt="GI">
+                       <p>{{ text |linebreaksbr|safe}}</p>
+            <!--           <p>{{ dall|linebreaksbr|safe }}</p>-->
+                       <p>당신의 피드 감성 비율!</p>
+                       <p>{{ gpt_text|linebreaksbr|safe }}</p>
+                       <p>당신의 피드 MBTI!</p>
+                       <p>{{ cap|linebreaksbr|safe }}</p>
 
-                <div class="drag-text">
-                    <h3>'파일선택' 버튼을 눌러주세요!</h3>
-                </div>
+                    </div>
             </div>
 
 
-           <h3>결과</h3>
-           <p>{{ text |linebreaksbr|safe}}</p>
-           <p>{{ cap|linebreaksbr|safe }}</p>
-           <p>{{ dall|linebreaksbr|safe }}</p>
-           <p>{{ gpt_text|linebreaksbr|safe }}</p>
-           <img class="file-upload-image" src="{% static cap %}" alt="GI">
-           <img class="file-upload-image" src="{{ dall }}" alt="GI">
+
 
             <div class="file-upload-content">
                 <img class="file-upload-image" src="#" alt="your image" />
@@ -68,15 +73,22 @@
                     <button type="button" class="remove-image">Submit</button>
                 </div>
             </div>
+
+
         </div>
 
         </div>
 
-
+            <!--오른쪽 광고배너-->
         <div class="right-banner">
-            <!-- 오른쪽 광고 배너 내용 -->
-            여기에 광고 내용을 작성하세요
+            <ins class="kakao_ad_area" style="display:none;"
+            data-ad-unit = "DAN-kAzjDy2Bgbk6iIY9"
+            data-ad-width = "160"
+            data-ad-height = "600"></ins>
+            <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
         </div>
+
+
 
 <!--        <div class="file-upload">-->
 <!--            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger('click')">Add Image</button>-->

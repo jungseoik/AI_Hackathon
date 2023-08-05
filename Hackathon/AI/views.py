@@ -131,7 +131,7 @@ def dall2(pt):
     import openai
     import requests
     from PIL import Image
-    openai.api_key = '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'
+    openai.api_key = ' '
 
     # Prompt for image generation
     prompt = pt
@@ -152,7 +152,7 @@ def dall2(pt):
 
 def gpt(str):
     # get_completion 함수 정의
-    openai.api_key = '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'
+    openai.api_key = ' '
 
     def get_completion(prompt, model="gpt-3.5-turbo"):
         """
@@ -184,7 +184,6 @@ def gpt(str):
     prompt = str
 
     response = get_completion(prompt)
-    print(response)
     return response
 
 
@@ -202,13 +201,23 @@ def imdex(request):
     text = ""
     dall = ""
     gpt_text = ""
+    gpt_result =""
+    gpt_temp=""
+    extracted_text = ""
+    extracted_text_em = ""
+    extracted_text_mbti = ""
+    result_part =""
+    result_part_em =""
+    result_part_mbti =""
+
+
     if request.method == 'POST':
         # text = request.POST.get('text', '')
         image = request.FILES.get('image')
         image_file = request.FILES['image']
 
         cap = process_image(image)
-        temp = "https://46f0-49-171-116-113.ngrok-free.app/static/"+ str(cap)
+        temp = "http://backxchang.com:8000/static/"+ str(cap)
 
         azv_result = azv(temp)
         azvobj_result = azv_obj(temp)
@@ -237,30 +246,48 @@ ex) result: 열정적으로 미래를 향해 남녀가 함께 협업하는 사�
 3. 마지막으로 모든 결과물을 통합해서 이 이미지를 찍은 사용자의 mbti가 뭔지 추측하고 그 신뢰도를 보여줘
 해당 답변은
 ex)
-MBTI : <답> .MBTI
+MBTI: <답> .MBTI
 신뢰도 : <답>
-형식으로 적어줘 그외에는 아무것도 안적어줘도 돼
+형식으로 답해주고 한글로 말해줘 그외에는 아무것도 안적어줘도 돼
 '''.format(azvobj_result, azv_result)
         print(long_string)
         gpt_result = gpt(translateK_E(long_string))
-        gpt_temp = gpt_result
-        gpt_text = gpt_result
-        print(gpt_text)
+        gpt_temp = str(gpt_result)
+        gpt_mbti = str(gpt_result)
+        gpt_text = str(gpt_result)
+        print(gpt_result)
 
-        result_part = re.search(r'result:(.*?)\.end_result', gpt_result, re.DOTALL)
+
+        result_part = re.search(r'result:(.*?)(\.end_result|$)', str(gpt_result), re.DOTALL)
+        print(result_part)
+        print("mmmmmmmmmmmmm")
         if result_part:
             extracted_text = result_part.group(1).strip()
+            print("피드설명")
             print(extracted_text)
 
-        result_part_em = re.search(r'emotion_result:(.*?)\.emotion', gpt_temp, re.DOTALL)
+        # 감정설명 추출
+        result_part_em = re.search(r'emotion_result:(.*?)(\.emotion|$)', gpt_temp, re.DOTALL)
         if result_part_em:
             extracted_text_em = result_part_em.group(1).strip()
+            print("감정설명")
             print(extracted_text_em)
 
+        # MBTI 설명 추출
+        result_part_mbti = re.search(r'MBTI:(.*?)(\.MBTI|$)', gpt_mbti, re.DOTALL)
+        if result_part_mbti:
+            extracted_text_mbti = result_part_mbti.group(1).strip()
+            print("MBTI설명")
+            print(extracted_text_mbti)
 
+
+
+        gpt_text = extracted_text_em
+        text = extracted_text
+        cap =  extracted_text_mbti
         dall = dall2(extracted_text)
         # cap = azvobj_result
-        text = azv_result
+        # text = azv_result
 
         print(cap)
     return render(request, 'imdex.html',{'cap': cap, 'text': text , 'dall' : dall , 'gpt_text' : gpt_text})

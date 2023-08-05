@@ -132,7 +132,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Django 프로젝트의 settings.py 파일에 있는 CSRF_TRUSTED_ORIGINS 설정을 확인하세요.
 # ngrok의 URL을 허용하는지 확인하고 필요한 경우 추가하세요. 예를 들어:
 CSRF_TRUSTED_ORIGINS = [
-    "https://46f0-49-171-116-113.ngrok-free.app",
+    "https://2bca-39-126-154-116.ngrok-free.app",
+    "http://backxchang.com",
+    "http://backxchang.com:8000",
+
 ]
 # settings.py에서 CSRF_COOKIE_SECURE 설정 변경:
 # 개발 단계에서는 settings.py 파일에서 CSRF_COOKIE_SECURE를 False로 변경할 수 있습니다.
